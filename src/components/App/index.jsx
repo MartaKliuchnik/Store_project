@@ -3,20 +3,19 @@ import BasketPage from "../../pages/BasketPage";
 import CategoriesPage from "../../pages/CategoriesPage";
 import CategoryPage from "../../pages/CategoryPage";
 import ProductPage from "../../pages/ProductPage";
-import NavMenu from "../NavMenu";
-
+import Layout from "../Layout";
 
 function App() {
   return (
     <>
-      <NavMenu/>
-    
-    <Routes>
-      <Route path="/" element={<CategoriesPage />} />
-      <Route path="/categories/:id" element={<CategoryPage />} />
-      <Route path="/product/:id" element={<ProductPage />} />
-      <Route path="/basket" element={<BasketPage />} />
-    </Routes>
+      <Routes>
+        <Route path="/" element={<Layout/>}>
+          <Route index element={<CategoriesPage />} />
+          <Route path="categories/:id" element={<CategoryPage />} />
+          <Route path="product/:id" element={<ProductPage />} />
+          <Route path="basket" element={<BasketPage />} />
+        </Route>
+      </Routes>
     </>
   );
 }
