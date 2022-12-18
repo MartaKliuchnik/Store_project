@@ -8,7 +8,9 @@ export default function Layout() {
     return (
         <div className={s.wrapper}>
             <NavMenu />
-            <Outlet/>
+            <div className={s.content}>
+                <Outlet/>
+            </div>
             <Footer/>
         </div>
     )

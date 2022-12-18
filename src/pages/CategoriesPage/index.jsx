@@ -1,6 +1,8 @@
 import React, {useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { loadCategoriesAsync } from '../../store/asyncAction/categories';
+import CategoryCard from '../../components/CategoryCard';
+import s from './style.module.sass'
 
 export default function CategoriesPage() {
 
@@ -9,12 +11,14 @@ export default function CategoriesPage() {
 
   useEffect(() => {
     dispatch(loadCategoriesAsync())
-  }, [])
+  }, []);
   
 
   return (
-    <div>{
-      categories.map(category => <p key={category.id}>{category.name}</p>)
-    }</div>
+    <div className={s.categories}>
+        {
+          categories.map(category => <CategoryCard key={category.id} {...category}/>)
+        }
+    </div>
   )
 }
