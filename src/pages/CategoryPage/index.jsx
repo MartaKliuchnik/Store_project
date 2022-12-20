@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadProductsByCategoryAsync } from '../../store/asyncAction/categories';
+import ProductCard from '../../components/ProductCard';
+import s from './style.module.sass'
 
 export default function CategoryPage() {
   const { id } = useParams();
@@ -14,9 +16,9 @@ export default function CategoryPage() {
     }, [])
 
   return (
-    <div>
+    <div className={s.product_container}>
       {
-        products.map(product => <p key={product.id}>{product.title}</p>)
+        products.map(product => <ProductCard key={product.id} {...product} />)
       }
     </div>
   )
