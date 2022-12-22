@@ -6,7 +6,6 @@ export const load_products_action = (payload) => ({ type: LOAD_PRODUCTS, payload
 
 export const productsReducer = (state = defaultState, action) => {
     if (action.type === 'LOAD_PRODUCTS') {
-        console.log(action.payload)
         return action.payload
     } else {
         return state
