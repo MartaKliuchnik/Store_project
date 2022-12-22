@@ -1,4 +1,7 @@
-const defaultState = [];
+const read_from_local = () => JSON.parse(localStorage.getItem('basket')) ?? [];
+const write_to_local = (basket_list) => localStorage.setItem('basket', JSON.stringify(basket_list));
+
+const defaultState = read_from_local();
 
 const ADD_TO_BASKET = 'ADD_TO_BASKET';
 const INCREMENT = 'INCREMENT';
@@ -29,17 +32,18 @@ const decrement = (state, current_id) => {
 }
 
 export const basketReducer = (state = defaultState, action) => {
+    let new_state;
     if (action.type === ADD_TO_BASKET) {
-        return add_product(state, action.payload)
+        new_state = add_product(state, action.payload)
     } else if (action.type === DECREMENT){
-        // const target = state.find(({ id }) => id === action.payload);
-        // target.count-- 
-        return decrement(state, action.payload)
+        new_state = decrement(state, action.payload)
     } else if (action.type === INCREMENT) {
         const target = state.find(({ id }) => id === action.payload);
         target.count++
-        return [...state]
+        new_state = [...state]
     }  else {
         return state
     }
+    write_to_local(new_state)
+    return new_state
 }
